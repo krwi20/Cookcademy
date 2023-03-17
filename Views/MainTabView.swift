@@ -22,7 +22,11 @@ struct MainTabView: View {
                 .tabItem { Label("Settings", systemImage: "gear") }
         }
         .environmentObject(recipeData)
+        .onAppear {
+            recipeData.loadRecipes()
+        }
     }
+    
 }
 
 struct MainTabView_Previews: PreviewProvider {
