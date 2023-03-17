@@ -1,6 +1,6 @@
 # Cookcademy 🍳 
 
-Cookcademy is a recipe application built using Swift, where users can view, create, edit, favorite, and save recipes. It provides a user-friendly interface to interact with the recipes, edit their ingredients, and store them persistently using file manager.
+Cookcademy is a recipe application built using Swift, where users can view, create, edit, favorite, and save recipes. It provides a user-friendly interface to interact with the recipes, edit their ingredients, and store them persistently using file manager. This Project was created by working through the iOS Developer course from Codecademy.
 
 ## Features 🚀
 
