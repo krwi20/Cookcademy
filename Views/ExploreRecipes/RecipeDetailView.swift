@@ -9,9 +9,12 @@ import SwiftUI
 
 struct RecipeDetailView: View {
     
-    let recipe: Recipe
+    @Binding var recipe: Recipe
+    
     private let listBackgroundColor = AppColor.background
     private let listTextColor = AppColor.foreground
+    
+    @State private var isPresenting = false
     
     var body: some View {
         VStack {
@@ -22,8 +25,8 @@ struct RecipeDetailView: View {
                 Spacer()
             }
             HStack {
-                Text("Author: \(recipe.mainInformation.description)")
-                    .font(.subheadline)
+                Text(recipe.mainInformation.description)
+                    .font(.body)
                     .padding()
                 Spacer()
             }
@@ -40,14 +43,36 @@ struct RecipeDetailView: View {
                         let direction = recipe.directions[index]
                         HStack {
                             Text("\(index + 1). ").bold()
-                            Text("\(direction.isOptional ? "(Optional) " : "")"
-                                 + "\(direction.description)")
+                            Text("\(direction.isOptional ? "(Optional) " : "")\(direction.description)")
                         }.foregroundColor(listTextColor)
                     }
                 }.listRowBackground(listBackgroundColor)
             }
         }
         .navigationTitle(recipe.mainInformation.name)
+        .toolbar {
+            ToolbarItem {
+                HStack {
+                    Button("Edit") {
+                        isPresenting = true
+                    }
+                }
+            }
+            ToolbarItem(placement: .navigationBarLeading) { Text("") }
+        }
+        .sheet(isPresented: $isPresenting) {
+            NavigationView {
+                ModifyRecipeView(recipe: $recipe)
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Save") {
+                                isPresenting = false
+                            }
+                        }
+                    }
+                    .navigationTitle("Edit Recipe")
+            }
+        }
     }
 }
 
@@ -57,7 +82,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            RecipeDetailView(recipe: recipe)
+            RecipeDetailView(recipe: $recipe)
         }
     }
 }
