@@ -12,7 +12,7 @@ struct ModifyRecipeView: View {
     @Binding var recipe: Recipe
     
     @State private var selection = Selection.main
-    
+
     var body: some View {
         VStack {
             Picker("Select recipe component", selection: $selection) {
@@ -26,9 +26,9 @@ struct ModifyRecipeView: View {
             case .main:
                 ModifyMainInformationView(mainInformation: $recipe.mainInformation)
             case .ingredients:
-                ModifyIngredientsView(ingredients: $recipe.ingredients)
+                ModifyComponentsView<Ingredient, ModifyIngredientView>(components: $recipe.ingredients)
             case .directions:
-                Text("Directions Editor")
+                ModifyComponentsView<Direction, ModifyDirectionView>(components: $recipe.directions)
             }
             Spacer()
         }
@@ -42,9 +42,12 @@ struct ModifyRecipeView: View {
 }
 
 struct ModifyRecipeView_Previews: PreviewProvider {
+    
     @State static var recipe = Recipe()
+    
     static var previews: some View {
         ModifyRecipeView(recipe: $recipe)
     }
 }
+
 

@@ -26,5 +26,5 @@ class RecipeData: ObservableObject {
             recipes.append(recipe)
         }
     }
-    
 }
+
