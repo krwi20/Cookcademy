@@ -18,6 +18,8 @@ The Cookcademy application is divided into several parts that cover different as
 - **Part 10: Persist settings with appstorage** - This section enables users to persist their application settings using app storage. 💾
 - **Part 11: Persist Recipes using filemanager** - This section enables users to store their recipes persistently using file manager. 📁
 
+<img alt="App_Preview" src="https://static-assets.codecademy.com/Paths/ios-career-path/skill-path-2/App11/finalVideo.gif">
+
 ## Installation 💻
 
 To install and run the Cookcademy application on your local machine, follow these steps:
