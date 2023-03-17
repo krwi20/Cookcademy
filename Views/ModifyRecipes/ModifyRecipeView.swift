@@ -10,6 +10,7 @@ import SwiftUI
 struct ModifyRecipeView: View {
     
     @Binding var recipe: Recipe
+    
     @State private var selection = Selection.main
     
     var body: some View {
@@ -23,9 +24,9 @@ struct ModifyRecipeView: View {
             .padding()
             switch selection {
             case .main:
-                Text("Main Editor")
+                ModifyMainInformationView(mainInformation: $recipe.mainInformation)
             case .ingredients:
-                Text("Ingredients Editor")
+                ModifyIngredientsView(ingredients: $recipe.ingredients)
             case .directions:
                 Text("Directions Editor")
             }
@@ -41,10 +42,9 @@ struct ModifyRecipeView: View {
 }
 
 struct ModifyRecipeView_Previews: PreviewProvider {
-    
     @State static var recipe = Recipe()
-    
     static var previews: some View {
         ModifyRecipeView(recipe: $recipe)
     }
 }
+
